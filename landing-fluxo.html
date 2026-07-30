@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kit +1.500 Automações PRO — Make & n8n prontas para usar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07060d;--card:rgba(255,255,255,.04);--stroke:rgba(255,255,255,.09);
+  --txt:#f6f3ff;--muted:#b3aed0;--a1:#7c5cff;--a2:#12d8c4;--a3:#ff4d8d;--warn:#ffb020;--danger:#ff5a6e;
+  --grad:linear-gradient(120deg,#8b74ff,#28e6d2);--grad2:linear-gradient(120deg,#ff6ba0,#8b74ff);--r:22px;
+}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;line-height:1.08;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.gt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.gt2{background:var(--grad2);-webkit-background-clip:text;background-clip:text;color:transparent}
+.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse at 50% 0%,#000 35%,transparent 78%)}
+.blob{position:fixed;border-radius:50%;filter:blur(90px);opacity:.4;z-index:0;pointer-events:none}
+.b1{width:520px;height:520px;background:var(--a1);top:-160px;left:-120px;animation:f1 16s ease-in-out infinite}
+.b2{width:460px;height:460px;background:var(--a2);top:36%;right:-160px;animation:f2 20s ease-in-out infinite}
+.b3{width:400px;height:400px;background:var(--a3);bottom:-120px;left:18%;opacity:.28;animation:f1 22s ease-in-out infinite}
+@keyframes f1{50%{transform:translate(40px,60px)}}@keyframes f2{50%{transform:translate(-50px,40px)}}
+main,nav,.urg{position:relative;z-index:2}
+/* nav */
+nav{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);background:rgba(7,6,13,.72);border-bottom:1px solid var(--stroke)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;display:flex;align-items:center;gap:9px}
+.logo .dot{width:26px;height:26px;border-radius:8px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:15px;color:#07060d}
+.nav-right{display:flex;align-items:center;gap:12px}
+.langsw{display:flex;background:var(--card);border:1px solid var(--stroke);border-radius:100px;padding:3px}
+.langsw button{background:none;border:none;color:var(--muted);font-size:12px;font-weight:600;padding:5px 10px;border-radius:100px;cursor:pointer;transition:.2s}
+.langsw button.on{background:var(--grad);color:#07060d}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:15px;padding:13px 24px;border-radius:100px;cursor:pointer;border:none;transition:.25s;font-family:inherit;text-align:center}
+.btn-primary{background:var(--grad);color:#07060d;box-shadow:0 8px 30px -8px var(--a1)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 44px -8px var(--a1)}
+.btn-ghost{background:var(--card);color:var(--txt);border:1px solid var(--stroke)}.btn-ghost:hover{border-color:var(--a2)}
+.btn-sm{padding:9px 17px;font-size:13.5px}.btn-lg{padding:18px 34px;font-size:17px;width:100%}
+.pulse{animation:pb 2.4s infinite}@keyframes pb{0%,100%{box-shadow:0 8px 30px -8px var(--a1)}50%{box-shadow:0 8px 46px 0 var(--a1)}}
+/* chips */
+.chips{display:inline-flex;gap:9px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:100px;padding:6px 13px;font-weight:800;font-size:14px}
+.chip .m{width:17px;height:17px;border-radius:5px;position:relative;display:flex}
+.chip.n8n{color:#ff6b8b}.chip.n8n .m{background:#ea4b71}
+.chip.make{color:#c9a5ff}.chip.make .m{background:linear-gradient(135deg,#6d5efc,#b06bff)}
+.chip.n8n .m i{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff}
+/* urgency */
+.urg{background:linear-gradient(90deg,var(--a3),var(--a1));text-align:center;font-size:13.5px;font-weight:700;padding:9px 16px;color:#fff}
+/* hero */
+.hero{padding:64px 0 46px;text-align:center;position:relative;overflow:hidden}
+.hero-flows{position:absolute;inset:0;z-index:0;opacity:.55;pointer-events:none;mask-image:radial-gradient(ellipse at 50% 40%,#000 30%,transparent 72%)}
+.hero .wrap{position:relative;z-index:2}
+.pill{display:inline-flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--stroke);border-radius:100px;padding:8px 16px;font-size:13px;color:var(--muted);margin-bottom:22px}
+.pill .live{width:8px;height:8px;border-radius:50%;background:var(--a2);box-shadow:0 0 10px var(--a2);animation:pl 1.6s infinite}
+@keyframes pl{50%{opacity:.35}}
+.hero h1{font-size:clamp(38px,6.2vw,70px);font-weight:700;margin:20px 0 22px}
+.hero .sub{font-size:clamp(16px,2.2vw,20px);color:var(--muted);max-width:640px;margin:0 auto 22px}
+.stars{color:var(--warn);letter-spacing:2px;font-size:18px}
+.hero-sales{color:var(--muted);font-size:14px;margin-bottom:28px}.hero-sales b{color:var(--txt)}
+.mini-trust{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:30px;color:var(--muted);font-size:13.5px}
+.mini-trust div{display:flex;align-items:center;gap:7px}.mini-trust .k{color:var(--a2);font-weight:800}
+/* section */
+section{padding:66px 0;position:relative}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.sec-head{max-width:680px;margin:0 auto 42px;text-align:center}
+.sec-head h2{font-size:clamp(28px,4.4vw,44px);font-weight:700;margin-bottom:14px}
+.sec-head p{color:var(--muted);font-size:17px}
+.mid-cta{text-align:center;margin-top:40px}
+/* problem */
+.probs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.prob{background:var(--card);border:1px solid var(--stroke);border-radius:var(--r);padding:30px;text-align:center}
+.prob .ic{width:54px;height:54px;border-radius:14px;background:rgba(255,90,110,.12);border:1px solid rgba(255,90,110,.3);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 18px}
+.prob h3{font-size:19px;margin-bottom:8px}.prob p{color:var(--muted);font-size:14.5px}
+/* categories + mockup */
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.cat{background:var(--card);border:1px solid var(--stroke);border-radius:16px;padding:20px;transition:.3s}
+.cat:hover{transform:translateY(-4px);border-color:var(--a2)}
+.cat .e{font-size:26px;margin-bottom:10px;display:block}.cat h4{font-family:'Space Grotesk';font-size:16px;margin-bottom:4px}.cat p{color:var(--muted);font-size:13px}
+.mock{max-width:760px;margin:40px auto 0;background:#0e0b1c;border:1px solid var(--stroke);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px -30px #000}
+.mock-top{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid var(--stroke);background:rgba(255,255,255,.03)}
+.mock-top .d{width:11px;height:11px;border-radius:50%}.mock-top .t1{color:var(--muted);font-size:13px;margin-left:12px;font-weight:600}
+.mock-row{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.05);font-size:14.5px}
+.mock-row:last-child{border-bottom:none}.mock-row .l{display:flex;align-items:center;gap:11px}
+.mock-row .st{font-size:11px;color:var(--a2);background:rgba(18,216,196,.12);padding:3px 10px;border-radius:100px;font-weight:600}
+/* bonus */
+.bonus{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:900px;margin:0 auto}
+.bonus-c{background:var(--card);border:1px solid var(--stroke);border-radius:18px;padding:24px;display:flex;gap:16px;align-items:flex-start}
+.bonus-c .g{flex:none;width:46px;height:46px;border-radius:12px;background:var(--grad2);display:flex;align-items:center;justify-content:center;font-size:22px}
+.bonus-c h4{font-family:'Space Grotesk';font-size:17px;margin-bottom:5px}.bonus-c p{color:var(--muted);font-size:14px;margin-bottom:8px}
+.val .old{color:var(--danger);text-decoration:line-through;font-weight:700}.val .free{color:var(--a2);font-weight:700;margin-left:6px}.val{font-size:13px}
+/* testimonials */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tcard{background:var(--card);border:1px solid var(--stroke);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:.3s}
+.tcard:hover{transform:translateY(-4px);border-color:var(--a1)}
+.tcard .tstars{color:var(--warn);font-size:15px;letter-spacing:1px}
+.tcard p{font-size:14.5px;color:#e2def5;line-height:1.5}
+.tcard .who{display:flex;align-items:center;gap:11px;margin-top:auto}
+.tcard .av{width:40px;height:40px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-weight:800;color:#07060d;font-size:16px}
+.tcard .who b{font-size:14px;display:block}.tcard .who span{color:var(--muted);font-size:12.5px}
+.verified{color:var(--a2);font-size:11.5px;font-weight:700;display:inline-flex;align-items:center;gap:4px}
+/* offer */
+.offer{max-width:520px;margin:0 auto;background:linear-gradient(180deg,rgba(124,92,255,.16),rgba(18,216,196,.06));border:1.5px solid var(--a1);border-radius:28px;padding:40px 32px;text-align:center;position:relative}
+.offer .flag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--grad);color:#07060d;font-size:12px;font-weight:700;padding:6px 18px;border-radius:100px}
+.offer .chips{margin-bottom:16px}
+.offer .price-old{color:var(--muted);font-size:17px}.offer .price-old s{color:var(--danger)}
+.offer .price{font-family:'Space Grotesk';font-size:72px;font-weight:700;line-height:1;margin:6px 0}.offer .price small{font-size:26px;vertical-align:top}
+.offer .terms{color:var(--muted);font-size:14.5px;margin-bottom:24px}
+.check{list-style:none;text-align:left;display:flex;flex-direction:column;gap:11px;margin-bottom:24px}
+.check li{display:flex;gap:11px;align-items:flex-start;font-size:15px}
+.check li .c{flex:none;width:22px;height:22px;border-radius:50%;background:rgba(18,216,196,.15);display:flex;align-items:center;justify-content:center;color:var(--a2);font-size:13px;font-weight:700}
+.secure{margin-top:14px;color:var(--muted);font-size:12.5px}
+.guarantee{display:flex;align-items:center;gap:14px;justify-content:center;margin-top:22px;color:var(--muted);font-size:13.5px;max-width:400px;margin:22px auto 0}
+.guarantee .shield{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--stroke);display:flex;align-items:center;justify-content:center;font-size:22px}
+/* reseller */
+.aff{background:linear-gradient(120deg,rgba(255,77,141,.14),rgba(124,92,255,.14));border:1px solid var(--stroke);border-radius:30px;padding:52px;text-align:center}
+.aff .big{font-family:'Space Grotesk';font-size:clamp(28px,4.2vw,44px);font-weight:700;margin-bottom:14px}
+.aff p{color:var(--muted);max-width:540px;margin:0 auto 28px;font-size:16.5px}
+.aff-stats{display:flex;gap:44px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+.aff-stats .n{font-family:'Space Grotesk';font-size:34px;font-weight:700}.aff-stats .l{color:var(--muted);font-size:13.5px}
+/* faq */
+.faq-list{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:11px}
+.faq{background:var(--card);border:1px solid var(--stroke);border-radius:16px;padding:0 24px;transition:.2s}.faq:hover{border-color:var(--a1)}
+.faq summary{list-style:none;padding:20px 0;font-weight:600;font-size:16px;display:flex;justify-content:space-between;gap:14px;align-items:center;cursor:pointer}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .ic{flex:none;width:26px;height:26px;border-radius:8px;background:var(--card);border:1px solid var(--stroke);display:flex;align-items:center;justify-content:center;transition:.25s;font-size:18px;color:var(--a2)}
+.faq[open] summary .ic{transform:rotate(45deg)}.faq .ans{color:var(--muted);font-size:15px;padding:0 0 22px}
+/* final */
+.final-card{background:linear-gradient(120deg,rgba(124,92,255,.16),rgba(18,216,196,.1));border:1px solid var(--stroke);border-radius:30px;padding:64px 36px;text-align:center;position:relative;overflow:hidden}
+.final-card h2{font-size:clamp(28px,5vw,48px);font-weight:700;margin-bottom:16px}.final-card p{color:var(--muted);font-size:17px;margin-bottom:30px}
+footer{border-top:1px solid var(--stroke);padding:40px 0;color:var(--muted);font-size:13.5px}
+.foot-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+/* whatsapp + toast + sticky bar */
+.wa{position:fixed;bottom:88px;right:22px;z-index:80;width:58px;height:58px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px -6px rgba(37,211,102,.6);animation:pb 2.4s infinite}
+.wa svg{width:30px;height:30px;fill:#fff}
+.toast{position:fixed;bottom:90px;left:22px;z-index:80;background:rgba(14,11,28,.96);border:1px solid var(--stroke);border-radius:14px;padding:12px 16px 12px 12px;display:flex;gap:11px;align-items:center;max-width:300px;transform:translateY(240%);transition:.5s cubic-bezier(.2,.7,.2,1);backdrop-filter:blur(10px)}
+.toast.show{transform:none}
+.toast .av{flex:none;width:38px;height:38px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-weight:700;color:#07060d}
+.toast .n{font-weight:600;font-size:13.5px}.toast .m{color:var(--muted);font-size:12px}
+.sbar{position:fixed;left:0;right:0;bottom:0;z-index:70;background:rgba(10,8,20,.94);backdrop-filter:blur(14px);border-top:1px solid var(--stroke);transform:translateY(120%);transition:.4s cubic-bezier(.2,.7,.2,1)}
+.sbar.show{transform:none}
+.sbar .in{max-width:1140px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.sbar .p s{color:var(--danger)}.sbar .p b{font-family:'Space Grotesk';font-size:22px}.sbar .p span{color:var(--muted);font-size:13px}
+/* reveal */
+.rev{opacity:0;transform:translateY(26px);transition:.7s cubic-bezier(.2,.7,.2,1)}.rev.in{opacity:1;transform:none}
+@media(max-width:900px){.probs,.cats,.bonus,.tgrid{grid-template-columns:1fr}.cats{grid-template-columns:1fr 1fr}.aff{padding:38px 22px}.final-card{padding:44px 20px}.offer{padding:34px 22px}.toast{display:none}.sbar .p span{display:none}}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<div class="urg t" data-pt="⚡ ÚLTIMAS HORAS — o preço sobe amanhã. Garanta com desconto agora." data-es="⚡ ÚLTIMAS HORAS — el precio sube mañana. Asegúralo con descuento ahora.">⚡ ÚLTIMAS HORAS — o preço sobe amanhã. Garanta com desconto agora.</div>
+
+<nav>
+  <div class="wrap nav-in">
+    <div class="logo"><span class="dot">✦</span>Kit +1.500 PRO</div>
+    <div class="nav-right">
+      <div class="langsw"><button data-lang="pt" class="on">PT</button><button data-lang="es">ES</button></div>
+      <a href="#comprar" class="btn btn-primary btn-sm t" data-pt="Comprar agora" data-es="Comprar ahora">Comprar agora</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-flows" id="heroFlows"></div>
+  <div class="wrap">
+    <div class="chips"><span class="chip n8n"><span class="m"><i style="left:3px;top:5px"></i><i style="left:9px;top:3px"></i><i style="left:9px;top:9px"></i></span>n8n</span><span class="chip make"><span class="m"></span>Make</span></div>
+    <h1 class="rev t" data-pt="+1.500 automações de n8n e Make <span class='gt'>prontas para usar.</span>" data-es="+1.500 automatizaciones de n8n y Make <span class='gt'>listas para usar.</span>">+1.500 automações de n8n e Make <span class="gt">prontas para usar.</span></h1>
+    <p class="sub rev t" data-pt="Pare de perder madrugadas configurando fluxos que não funcionam. Baixe, importe em minutos e coloque seu negócio no automático — mesmo começando do zero." data-es="Dejá de perder noches configurando flujos que no funcionan. Descargá, importá en minutos y poné tu negocio en automático — incluso empezando de cero.">Pare de perder madrugadas configurando fluxos que não funcionam. Baixe, importe em minutos e coloque seu negócio no automático — mesmo começando do zero.</p>
+    <div class="rev">
+      <div class="stars">★★★★★</div>
+      <div class="hero-sales t" data-pt="<b>+298 vendas</b> • avaliação 4,9/5" data-es="<b>+298 ventas</b> • valoración 4,9/5"><b>+298 vendas</b> • avaliação 4,9/5</div>
+      <a href="#comprar" class="btn btn-primary pulse t" style="padding:18px 42px;font-size:18px" data-pt="QUERO O KIT AGORA →" data-es="QUIERO EL KIT AHORA →">QUERO O KIT AGORA →</a>
+      <div class="mini-trust">
+        <div><span class="k">✓</span><span class="t" data-pt="Entrega imediata" data-es="Entrega inmediata">Entrega imediata</span></div>
+        <div><span class="k">✓</span><span class="t" data-pt="Acesso vitalício" data-es="Acceso de por vida">Acesso vitalício</span></div>
+        <div><span class="k">✓</span><span class="t" data-pt="Garantia de 7 dias" data-es="Garantía de 7 días">Garantia de 7 dias</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PROBLEM -->
+<section>
+  <div class="wrap">
+    <div class="sec-head rev"><div class="eyebrow gt2 t" data-pt="Se você chegou até aqui…" data-es="Si llegaste hasta acá…">Se você chegou até aqui…</div><h2 class="t" data-pt="…é porque está cansado de perder tempo." data-es="…es porque estás cansado de perder tiempo.">…é porque está cansado de perder tempo.</h2></div>
+    <div class="probs">
+      <div class="prob rev"><div class="ic">📉</div><h3 class="t" data-pt="Perda de tempo infinita" data-es="Pérdida de tiempo infinita">Perda de tempo infinita</h3><p class="t" data-pt="Horas configurando fluxos que deveriam funcionar 'na primeira'." data-es="Horas configurando flujos que deberían funcionar 'a la primera'.">Horas configurando fluxos que deveriam funcionar 'na primeira'.</p></div>
+      <div class="prob rev"><div class="ic">🛡️</div><h3 class="t" data-pt="Risco em produção" data-es="Riesgo en producción">Risco em produção</h3><p class="t" data-pt="Medo de implementar automações sem saber se realmente funcionam." data-es="Miedo de implementar automatizaciones sin saber si funcionan.">Medo de implementar automações sem saber se realmente funcionam.</p></div>
+      <div class="prob rev"><div class="ic">🧱</div><h3 class="t" data-pt="Começar do zero" data-es="Empezar de cero">Começar do zero</h3><p class="t" data-pt="Reinventar a roda toda vez, em vez de partir de algo pronto e testado." data-es="Reinventar la rueda cada vez, en lugar de partir de algo listo.">Reinventar a roda toda vez, em vez de partir de algo pronto e testado.</p></div>
+    </div>
+    <div class="mid-cta rev"><a href="#comprar" class="btn btn-primary t" data-pt="Quero parar de perder tempo →" data-es="Quiero dejar de perder tiempo →">Quero parar de perder tempo →</a></div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section>
+  <div class="wrap">
+    <div class="sec-head rev"><div class="eyebrow gt t" data-pt="O que vem no Kit" data-es="Qué incluye el Kit">O que vem no Kit</div><h2 class="t" data-pt="Mais de 1.500 automações testadas e validadas" data-es="Más de 1.500 automatizaciones testeadas y validadas">Mais de 1.500 automações testadas e validadas</h2><p class="t" data-pt="Organizadas por categoria, prontas para baixar e importar no n8n em poucos cliques." data-es="Organizadas por categoría, listas para descargar e importar en pocos clics.">Organizadas por categoria, prontas para baixar e importar no n8n em poucos cliques.</p></div>
+    <div class="cats">
+      <div class="cat rev"><span class="e">🤖</span><h4>Agentes de IA</h4><p class="t" data-pt="Agente SDR, atendimento, assistentes" data-es="Agente SDR, atención, asistentes">Agente SDR, atendimento, assistentes</p></div>
+      <div class="cat rev"><span class="e">💬</span><h4>WhatsApp</h4><p class="t" data-pt="Lembretes, resumidor de grupos, disparos" data-es="Recordatorios, resumen de grupos, envíos">Lembretes, resumidor de grupos, disparos</p></div>
+      <div class="cat rev"><span class="e">✍️</span><h4 class="t" data-pt="Conteúdo" data-es="Contenido">Conteúdo</h4><p class="t" data-pt="Criação de conteúdo e criativos" data-es="Creación de contenido y creativos">Criação de conteúdo e criativos</p></div>
+      <div class="cat rev"><span class="e">💰</span><h4 class="t" data-pt="Financeiro" data-es="Financiero">Financeiro</h4><p class="t" data-pt="Assistente financeiro, cobranças" data-es="Asistente financiero, cobros">Assistente financeiro, cobranças</p></div>
+      <div class="cat rev"><span class="e">🔎</span><h4 class="t" data-pt="Pesquisa & Web" data-es="Búsqueda & Web">Pesquisa & Web</h4><p class="t" data-pt="Scraping, navegador autônomo" data-es="Scraping, navegador autónomo">Scraping, navegador autônomo</p></div>
+      <div class="cat rev"><span class="e">📈</span><h4 class="t" data-pt="Vendas & SDR" data-es="Ventas & SDR">Vendas & SDR</h4><p class="t" data-pt="Qualificação e nutrição de leads" data-es="Calificación y nutrición de leads">Qualificação e nutrição de leads</p></div>
+      <div class="cat rev"><span class="e">⚡</span><h4 class="t" data-pt="Produtividade" data-es="Productividad">Produtividade</h4><p class="t" data-pt="Rotinas, integrações, notificações" data-es="Rutinas, integraciones, notificaciones">Rotinas, integrações, notificações</p></div>
+      <div class="cat rev"><span class="e">🛒</span><h4>E-commerce</h4><p class="t" data-pt="Carrinho, pós-venda, estoque" data-es="Carrito, posventa, stock">Carrinho, pós-venda, estoque</p></div>
+    </div>
+    <div class="mock rev">
+      <div class="mock-top"><span class="d" style="background:#ff5f57"></span><span class="d" style="background:#ffbd2e"></span><span class="d" style="background:#28c840"></span><span class="t1 t" data-pt="Área de membros — Baixe aqui os fluxos" data-es="Área de miembros — Descargá acá los flujos">Área de membros — Baixe aqui os fluxos</span></div>
+      <div class="mock-row"><span class="l">⭐ <span class="t" data-pt="Agente IA SDR completo (com aula)" data-es="Agente IA SDR completo (con clase)">Agente IA SDR completo (com aula)</span></span><span class="st">Publicado</span></div>
+      <div class="mock-row"><span class="l">⭐ <span class="t" data-pt="Criação de conteúdos" data-es="Creación de contenidos">Criação de conteúdos</span></span><span class="st">Publicado</span></div>
+      <div class="mock-row"><span class="l">⭐ <span class="t" data-pt="Lembretes WhatsApp" data-es="Recordatorios WhatsApp">Lembretes WhatsApp</span></span><span class="st">Publicado</span></div>
+      <div class="mock-row"><span class="l">⭐ <span class="t" data-pt="Assistente financeiro" data-es="Asistente financiero">Assistente financeiro</span></span><span class="st">Publicado</span></div>
+      <div class="mock-row"><span class="l">⭐ <span class="t" data-pt="Navegador autônomo" data-es="Navegador autónomo">Navegador autônomo</span></span><span class="st">Publicado</span></div>
+    </div>
+    <p style="text-align:center;color:var(--muted);font-size:13.5px;margin-top:14px" class="t" data-pt="…e mais de 1.490 fluxos organizados e prontos." data-es="…y más de 1.490 flujos organizados y listos.">…e mais de 1.490 fluxos organizados e prontos.</p>
+    <div class="mid-cta rev"><a href="#comprar" class="btn btn-primary t" data-pt="Quero acesso a tudo →" data-es="Quiero acceso a todo →">Quero acesso a tudo →</a></div>
+  </div>
+</section>
+
+<!-- BONUSES -->
+<section>
+  <div class="wrap">
+    <div class="sec-head rev"><div class="eyebrow gt2 t" data-pt="Bônus exclusivos" data-es="Bonos exclusivos">Bônus exclusivos</div><h2 class="t" data-pt="Você leva tudo isso junto — de graça" data-es="Te llevás todo esto junto — gratis">Você leva tudo isso junto — de graça</h2></div>
+    <div class="bonus">
+      <div class="bonus-c rev"><div class="g">🎁</div><div><h4 class="t" data-pt="Instrução Claude — crie qualquer fluxo" data-es="Instrucción Claude — creá cualquier flujo">Instrução Claude — crie qualquer fluxo</h4><p class="t" data-pt="O prompt exato para gerar qualquer automação no n8n do zero." data-es="El prompt exacto para generar cualquier automatización desde cero.">O prompt exato para gerar qualquer automação no n8n do zero.</p><div class="val"><span class="old">R$97</span><span class="free">GRÁTIS</span></div></div></div>
+      <div class="bonus-c rev"><div class="g">🎨</div><div><h4 class="t" data-pt="Gerador de criativos de alta conversão" data-es="Generador de creativos de alta conversión">Gerador de criativos de alta conversão</h4><p class="t" data-pt="Crie anúncios que vendem em segundos, no automático." data-es="Creá anuncios que venden en segundos, en automático.">Crie anúncios que vendem em segundos, no automático.</p><div class="val"><span class="old">R$127</span><span class="free">GRÁTIS</span></div></div></div>
+      <div class="bonus-c rev"><div class="g">📝</div><div><h4 class="t" data-pt="Criação de conteúdos automático" data-es="Creación de contenidos automático">Criação de conteúdos automático</h4><p class="t" data-pt="Uma máquina de conteúdo rodando sozinha para suas redes." data-es="Una máquina de contenido corriendo sola para tus redes.">Uma máquina de conteúdo rodando sozinha para suas redes.</p><div class="val"><span class="old">R$97</span><span class="free">GRÁTIS</span></div></div></div>
+      <div class="bonus-c rev"><div class="g">💵</div><div><h4 class="t" data-pt="Guia 'Preços de Aço'" data-es="Guía 'Precios de Acero'">Guia 'Preços de Aço'</h4><p class="t" data-pt="Cobre o que você vale e pare de ter medo de pedir preços altos." data-es="Cobrá lo que valés y dejá de temerle a los precios altos.">Cobre o que você vale e pare de ter medo de pedir preços altos.</p><div class="val"><span class="old">R$49</span><span class="free">GRÁTIS</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head rev"><div class="eyebrow gt t" data-pt="Quem já usa" data-es="Quiénes ya lo usan">Quem já usa</div><h2 class="t" data-pt="+298 pessoas já automatizaram com o Kit" data-es="+298 personas ya automatizaron con el Kit">+298 pessoas já automatizaram com o Kit</h2><p class="t" data-pt="Avaliação média 4,9 de 5." data-es="Valoración media 4,9 de 5.">Avaliação média 4,9 de 5.</p></div>
+    <div class="tgrid">
+      <div class="tcard rev"><div class="tstars">★★★★★</div><p class="t" data-pt="“Instalei o primeiro fluxo em 15 minutos e já recuperei 3 vendas de carrinho abandonado na primeira semana.”" data-es="“Instalé el primer flujo en 15 minutos y ya recuperé 3 ventas de carrito abandonado en la primera semana.”">“Instalei o primeiro fluxo em 15 minutos e já recuperei 3 vendas de carrinho abandonado na primeira semana.”</p><div class="who"><span class="av">R</span><div><b>Rafael M.</b><span class="t" data-pt="Loja de suplementos" data-es="Tienda de suplementos">Loja de suplementos</span></div></div><span class="verified">✓ <span class="t" data-pt="Compra verificada" data-es="Compra verificada">Compra verificada</span></span></div>
+      <div class="tcard rev"><div class="tstars">★★★★★</div><p class="t" data-pt="“Eu não sei programar e mesmo assim montei meu atendimento no WhatsApp. O passo a passo é absurdo de bom.”" data-es="“No sé programar y aun así armé mi atención por WhatsApp. El paso a paso es increíblemente bueno.”">“Eu não sei programar e mesmo assim montei meu atendimento no WhatsApp. O passo a passo é absurdo de bom.”</p><div class="who"><span class="av">J</span><div><b>Juliana S.</b><span class="t" data-pt="Clínica de estética" data-es="Clínica de estética">Clínica de estética</span></div></div><span class="verified">✓ <span class="t" data-pt="Compra verificada" data-es="Compra verificada">Compra verificada</span></span></div>
+      <div class="tcard rev"><div class="tstars">★★★★★</div><p class="t" data-pt="“Comprei pra usar e acabei revendendo também. Já paguei o kit 4x com a comissão de afiliado.”" data-es="“Compré para usar y terminé revendiendo también. Ya pagué el kit 4 veces con la comisión de afiliado.”">“Comprei pra usar e acabei revendendo também. Já paguei o kit 4x com a comissão de afiliado.”</p><div class="who"><span class="av">D</span><div><b>Diego A.</b><span class="t" data-pt="Freelancer" data-es="Freelancer">Freelancer</span></div></div><span class="verified">✓ <span class="t" data-pt="Compra verificada" data-es="Compra verificada">Compra verificada</span></span></div>
+      <div class="tcard rev"><div class="tstars">★★★★★</div><p class="t" data-pt="“1.500 fluxos por R$47 é de graça. Só o agente de SDR já valeria 10x isso.”" data-es="“1.500 flujos por R$47 es regalado. Solo el agente de SDR ya valdría 10x eso.”">“1.500 fluxos por R$47 é de graça. Só o agente de SDR já valeria 10x isso.”</p><div class="who"><span class="av">M</span><div><b>Marina C.</b><span class="t" data-pt="Agência de marketing" data-es="Agencia de marketing">Agência de marketing</span></div></div><span class="verified">✓ <span class="t" data-pt="Compra verificada" data-es="Compra verificada">Compra verificada</span></span></div>
+      <div class="tcard rev"><div class="tstars">★★★★★</div><p class="t" data-pt="“O suporte com IA responde na hora. Nunca fiquei travado numa instalação.”" data-es="“El soporte con IA responde al instante. Nunca me quedé trabado en una instalación.”">“O suporte com IA responde na hora. Nunca fiquei travado numa instalação.”</p><div class="who"><span class="av">B</span><div><b>Bruno L.</b><span class="t" data-pt="Infoprodutor" data-es="Infoproductor">Infoprodutor</span></div></div><span class="verified">✓ <span class="t" data-pt="Compra verificada" data-es="Compra verificada">Compra verificada</span></span></div>
+      <div class="tcard rev"><div class="tstars">★★★★★</div><p class="t" data-pt="“Melhor investimento que fiz esse ano pro meu negócio. Automatizei o que me tomava horas.”" data-es="“La mejor inversión que hice este año para mi negocio. Automaticé lo que me tomaba horas.”">“Melhor investimento que fiz esse ano pro meu negócio. Automatizei o que me tomava horas.”</p><div class="who"><span class="av">C</span><div><b>Camila R.</b><span class="t" data-pt="E-commerce de moda" data-es="E-commerce de moda">E-commerce de moda</span></div></div><span class="verified">✓ <span class="t" data-pt="Compra verificada" data-es="Compra verificada">Compra verificada</span></span></div>
+    </div>
+    <div class="mid-cta rev"><a href="#comprar" class="btn btn-primary t" data-pt="Quero os mesmos resultados →" data-es="Quiero los mismos resultados →">Quero os mesmos resultados →</a></div>
+  </div>
+</section>
+
+<!-- OFFER -->
+<section id="comprar">
+  <div class="wrap">
+    <div class="sec-head rev"><div class="eyebrow gt t" data-pt="A oferta" data-es="La oferta">A oferta</div><h2 class="t" data-pt="Tudo isso, por um pagamento único" data-es="Todo esto, por un pago único">Tudo isso, por um pagamento único</h2></div>
+    <div class="offer rev">
+      <div class="flag t" data-pt="Oferta de lançamento" data-es="Oferta de lanzamiento">Oferta de lançamento</div>
+      <div class="chips" style="justify-content:center"><span class="chip n8n"><span class="m"><i style="left:3px;top:5px"></i><i style="left:9px;top:3px"></i><i style="left:9px;top:9px"></i></span>n8n</span><span class="chip make"><span class="m"></span>Make</span></div>
+      <div class="stars">★★★★★</div>
+      <div class="price-old t" data-pt="De <s>R$197</s> por apenas" data-es="De <s>R$197</s> por solo">De <s>R$197</s> por apenas</div>
+      <div class="price">R$<small></small>47</div>
+      <div class="terms t" data-pt="Pagamento único • Acesso vitalício • PIX, cartão ou boleto" data-es="Pago único • Acceso de por vida • PIX, tarjeta o boleto">Pagamento único • Acesso vitalício • PIX, cartão ou boleto</div>
+      <ul class="check">
+        <li><span class="c">✓</span><span class="t" data-pt="+1.500 templates prontos (Make e n8n)" data-es="+1.500 templates listos (Make y n8n)">+1.500 templates prontos (Make e n8n)</span></li>
+        <li><span class="c">✓</span><span class="t" data-pt="Do zero: aprenda n8n e monte sua infraestrutura" data-es="Desde cero: aprendé n8n y armá tu infraestructura">Do zero: aprenda n8n e monte sua infraestrutura</span></li>
+        <li><span class="c">✓</span><span class="t" data-pt="Atualizações gratuitas para sempre" data-es="Actualizaciones gratuitas para siempre">Atualizações gratuitas para sempre</span></li>
+        <li><span class="c">✓</span><span class="t" data-pt="Suporte com IA 24/7" data-es="Soporte con IA 24/7">Suporte com IA 24/7</span></li>
+        <li><span class="c">✓</span><span class="t" data-pt="4 bônus exclusivos inclusos" data-es="4 bonos exclusivos incluidos">4 bônus exclusivos inclusos</span></li>
+      </ul>
+      <a href="#COLE_LINK_HOTMART_CHECKOUT" class="btn btn-primary btn-lg pulse t" data-pt="COMPRAR AGORA →" data-es="COMPRAR AHORA →">COMPRAR AGORA →</a>
+      <div class="secure t" data-pt="🔒 Compra 100% segura, processada pela Hotmart" data-es="🔒 Compra 100% segura, procesada por Hotmart">🔒 Compra 100% segura, processada pela Hotmart</div>
+      <div class="guarantee"><div class="shield">🛡️</div><div class="t" data-pt="<b>Garantia de 7 dias.</b> Não gostou? Devolvemos 100% do seu dinheiro, sem perguntas." data-es="<b>Garantía de 7 días.</b> ¿No te gustó? Te devolvemos el 100%, sin preguntas."><b>Garantia de 7 dias.</b> Não gostou? Devolvemos 100% do seu dinheiro, sem perguntas.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESELLER -->
+<section id="afiliados">
+  <div class="wrap">
+    <div class="aff rev">
+      <div class="eyebrow gt2 t" data-pt="Programa de revenda" data-es="Programa de reventa">Programa de revenda</div>
+      <div class="big t" data-pt="Prefere revender? <span class='gt2'>Ganhe até 60% por venda.</span>" data-es="¿Preferís revender? <span class='gt2'>Ganá hasta 60% por venta.</span>">Prefere revender? <span class="gt2">Ganhe até 60% por venda.</span></div>
+      <p class="t" data-pt="Use o Kit no seu negócio OU revenda e lucre. Promova para sua audiência e receba comissão em cada venda — nós cuidamos do produto, da entrega e do suporte." data-es="Usá el Kit en tu negocio O revendélo y ganá. Promovélo a tu audiencia y recibí comisión en cada venta — nosotros nos encargamos del producto, entrega y soporte.">Use o Kit no seu negócio OU revenda e lucre. Promova para sua audiência e receba comissão em cada venda — nós cuidamos do produto, da entrega e do suporte.</p>
+      <a href="#COLE_LINK_AFILIADOS_HOTMART" class="btn btn-primary t" data-pt="Quero ser revendedor →" data-es="Quiero ser revendedor →">Quero ser revendedor →</a>
+      <div class="aff-stats"><div class="s"><div class="n gt">até 60%</div><div class="l t" data-pt="de comissão" data-es="de comisión">de comissão</div></div><div class="s"><div class="n gt">R$0</div><div class="l t" data-pt="para começar" data-es="para empezar">para começar</div></div><div class="s"><div class="n gt">100%</div><div class="l t" data-pt="material pronto" data-es="material listo">material pronto</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head rev"><div class="eyebrow gt t" data-pt="Dúvidas" data-es="Dudas">Dúvidas</div><h2 class="t" data-pt="Perguntas frequentes" data-es="Preguntas frecuentes">Perguntas frequentes</h2></div>
+    <div class="faq-list">
+      <details class="faq rev"><summary><span class="t" data-pt="Por onde recebo os templates?" data-es="¿Por dónde recibo los templates?">Por onde recebo os templates?</span><span class="ic">+</span></summary><div class="ans t" data-pt="Assim que o pagamento for aprovado, você recebe um e-mail com o link de acesso, com todos os templates organizados por categoria." data-es="Apenas se aprueba el pago, recibís un email con el link de acceso, con todos los templates organizados por categoría.">Assim que o pagamento for aprovado, você recebe um e-mail com o link de acesso, com todos os templates organizados por categoria.</div></details>
+      <details class="faq rev"><summary><span class="t" data-pt="Preciso saber usar n8n?" data-es="¿Necesito saber usar n8n?">Preciso saber usar n8n?</span><span class="ic">+</span></summary><div class="ans t" data-pt="Não precisa ser expert. O Kit inclui o passo a passo do zero e o assistente de IA te acompanha na instalação." data-es="No hace falta ser experto. El Kit incluye el paso a paso desde cero y el asistente de IA te acompaña.">Não precisa ser expert. O Kit inclui o passo a passo do zero e o assistente de IA te acompanha na instalação.</div></details>
+      <details class="faq rev"><summary><span class="t" data-pt="Como importo os templates?" data-es="¿Cómo importo los templates?">Como importo os templates?</span><span class="ic">+</span></summary><div class="ans t" data-pt="Baixe o .json, abra o n8n, clique em 'Import' e configure as credenciais. Cada template traz as instruções." data-es="Descargá el .json, abrí n8n, hacé clic en 'Import' y configurá las credenciales. Cada template trae instrucciones.">Baixe o .json, abra o n8n, clique em 'Import' e configure as credenciais. Cada template traz as instruções.</div></details>
+      <details class="faq rev"><summary><span class="t" data-pt="Posso revender os templates?" data-es="¿Puedo revender los templates?">Posso revender os templates?</span><span class="ic">+</span></summary><div class="ans t" data-pt="Sim — uso pessoal, da sua empresa ou revenda. Você ainda pode entrar no programa de afiliados e ganhar comissão." data-es="Sí — uso personal, de tu empresa o reventa. Además podés entrar al programa de afiliados y ganar comisión.">Sim — uso pessoal, da sua empresa ou revenda. Você ainda pode entrar no programa de afiliados e ganhar comissão.</div></details>
+      <details class="faq rev"><summary><span class="t" data-pt="Vou receber atualizações?" data-es="¿Voy a recibir actualizaciones?">Vou receber atualizações?</span><span class="ic">+</span></summary><div class="ans t" data-pt="Sim. Você recebe todos os novos templates adicionados gratuitamente, para sempre." data-es="Sí. Recibís todos los nuevos templates que se agreguen, gratis, para siempre.">Sim. Você recebe todos os novos templates adicionados gratuitamente, para sempre.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section>
+  <div class="wrap">
+    <div class="final-card rev">
+      <div class="stars">★★★★★</div>
+      <h2 class="t" data-pt="Seu negócio no automático<br>começa hoje." data-es="Tu negocio en automático<br>empieza hoy.">Seu negócio no automático<br>começa hoje.</h2>
+      <p class="t" data-pt="+1.500 automações + bônus + acesso vitalício, por R$47. O preço sobe amanhã." data-es="+1.500 automatizaciones + bonos + acceso de por vida, por R$47. El precio sube mañana.">+1.500 automações + bônus + acesso vitalício, por R$47. O preço sobe amanhã.</p>
+      <a href="#COLE_LINK_HOTMART_CHECKOUT" class="btn btn-primary pulse t" style="padding:18px 42px;font-size:18px" data-pt="COMPRAR AGORA →" data-es="COMPRAR AHORA →">COMPRAR AGORA →</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap foot-in"><div class="logo"><span class="dot">✦</span>Kit +1.500 PRO</div><div class="t" data-pt="© 2026 · Automações inteligentes · Brasil & LATAM" data-es="© 2026 · Automatizaciones inteligentes · Brasil & LATAM">© 2026 · Automações inteligentes · Brasil & LATAM</div></div></footer>
+
+<a href="#COLE_LINK_WHATSAPP" class="wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.1-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-1.5-.7-2.5-1.3-3.5-3-.3-.5.3-.4.7-1.4.1-.2 0-.4 0-.5 0-.1-.6-1.5-.9-2.1-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1 2.1-.6 3.4.5 1.6 1.6 3 3.4 4.3 2.5 1.9 4.5 2 5.6 1.6.7-.2 1.7-.9 1.9-1.6.2-.5.2-1 .1-1.1 0-.1-.2-.2-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.8.7-2.8-.2-.3A8 8 0 1 1 12 20z"/></svg></a>
+
+<div class="toast" id="toast"><div class="av" id="tav">D</div><div><div class="n" id="tn">David</div><div class="m" id="tm">comprou há 2 minutos</div></div></div>
+
+<div class="sbar" id="sbar"><div class="in">
+  <div class="p"><s>R$197</s> <b class="gt">R$47</b> <span class="t" data-pt="· acesso vitalício + 1.500 fluxos" data-es="· acceso vitalício + 1.500 flujos">· acesso vitalício + 1.500 fluxos</span></div>
+  <a href="#comprar" class="btn btn-primary btn-sm t" data-pt="Comprar agora →" data-es="Comprar ahora →">Comprar agora →</a>
+</div></div>
+
+<script>
+// perspective flows for hero
+(function(){
+  const acc='#12d8c4';
+  const N=[{x:200,y:150,s:.55},{x:500,y:120,s:.6},{x:820,y:150,s:.58},{x:1080,y:180,s:.5},{x:340,y:300,s:.85},{x:700,y:280,s:.9},{x:980,y:320,s:.8},{x:180,y:470,s:1.1},{x:560,y:480,s:1.25},{x:900,y:460,s:1.1}];
+  const L=[[0,4],[1,5],[2,5],[3,6],[4,8],[5,8],[6,9],[4,7],[5,9],[1,4],[2,6]];
+  let g='';for(let i=-8;i<=8;i++){g+=`<line x1="${640+i*120}" y1="640" x2="640" y2="60" stroke="${acc}" stroke-width="1.2" opacity="0.06"/>`;}
+  const ys=[640,540,460,400,350,315];ys.forEach((y,i)=>{const hw=640*(1-i*0.13);g+=`<line x1="${640-hw}" y1="${y}" x2="${640+hw}" y2="${y}" stroke="${acc}" stroke-width="1.2" opacity="0.06"/>`;});
+  let lk='';L.forEach(([a,b])=>{const A=N[a],B=N[b],mx=(A.x+B.x)/2;lk+=`<path d="M ${A.x} ${A.y} C ${mx} ${A.y}, ${mx} ${B.y}, ${B.x} ${B.y}" stroke="${acc}" stroke-width="2" fill="none" opacity="0.3"/>`;});
+  let nd='';N.forEach(n=>{const w=120*n.s,h=64*n.s,x=n.x-w/2,y=n.y-h/2;nd+=`<g opacity="${0.3+n.s*0.34}"><rect x="${x-3}" y="${y-3}" width="${w+6}" height="${h+6}" rx="${14*n.s}" fill="${acc}" opacity="0.1"/><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${12*n.s}" fill="#0e0b1e" stroke="${acc}" stroke-width="${2*n.s}"/><circle cx="${x+16*n.s}" cy="${n.y}" r="${6*n.s}" fill="${acc}"/><rect x="${x+28*n.s}" y="${n.y-9*n.s}" width="${w-40*n.s}" height="${5*n.s}" rx="2" fill="#fff" opacity="0.24"/><rect x="${x+28*n.s}" y="${n.y+2*n.s}" width="${w-58*n.s}" height="${5*n.s}" rx="2" fill="#fff" opacity="0.14"/><circle cx="${x+w}" cy="${n.y}" r="${4*n.s}" fill="${acc}"/></g>`;});
+  document.getElementById('heroFlows').innerHTML=`<svg viewBox="0 0 1280 660" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">${g}${lk}${nd}</svg>`;
+})();
+// language
+const els=[...document.querySelectorAll('.t')];
+function setLang(l){els.forEach(e=>{const v=e.dataset[l];if(v!=null)e.innerHTML=v});document.querySelectorAll('.langsw button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));document.documentElement.lang=l==='pt'?'pt-BR':'es';window.__lang=l;}
+document.querySelectorAll('.langsw button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));window.__lang='pt';
+// reveal
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rev').forEach(e=>io.observe(e));
+// sticky bar after hero
+const sbar=document.getElementById('sbar');
+window.addEventListener('scroll',()=>{sbar.classList.toggle('show',window.scrollY>640);});
+// social proof toast
+const names=['Rafael','Juliana','Carlos','Marina','Bruno','Camila','Diego','Fernanda','Lucas','Patrícia'];
+const t=document.getElementById('toast');
+function showToast(){const n=names[Math.floor(Math.random()*names.length)];const min=Math.floor(Math.random()*18)+1;document.getElementById('tav').textContent=n[0];document.getElementById('tn').textContent=n;document.getElementById('tm').textContent=window.__lang==='es'?('compró hace '+min+' min'):('comprou há '+min+' min');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
+setTimeout(showToast,6000);setInterval(showToast,17000);
+</script>
+</body>
+</html>
